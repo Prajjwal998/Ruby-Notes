@@ -116,10 +116,29 @@ c.uniq! {|s| s.first}   # => [["student", "sam"], ["teacher", "matz"]]
 
 
 # sort reverse
+#return new array 
+ary = [ "d", "a", "e", "c", "b" ]
+ary.sort                     #=> ["a", "b", "c", "d", "e"]
+ary.sort {|a, b| b <=> a}    #=> ["e", "d", "c", "b", "a"] reverse
+ary.sort.reverse!             #=> ["e", "d", "c", "b", "a"]
 
-arr.sort
-arr.sort {|a, b| b<=>a}
-arr.sort.reverse!
+#sort!
+#self array sort exixting
+ary = [ "d", "a", "e", "c", "b" ]
+ary.sort!                     #=> ["a", "b", "c", "d", "e"]
+ary.sort! {|a, b| b <=> a}    #=> ["e", "d", "c", "b", "a"]
+
+# shuffle  return new array 
+a = [ 1, 2, 3 ]           #=> [1, 2, 3]
+a.shuffle                 #=> [2, 3, 1]
+a                         #=> [1, 2, 3]
+
+# shuffle!  shuffle in existing array 
+a = [ 1, 2, 3 ]           #=> [1, 2, 3]
+a.shuffle!                #=> [2, 3, 1]
+a                         #=> [2, 3, 1]
+
+
 
 strarr = %w[a,b,c,d,e,f]
 str =""
@@ -193,6 +212,21 @@ a[5]                   #=> nil
 a[6, 1]                #=> nil
 a[5, 1]                #=> []
 a[5..10]               #=> []
+
+
+slice!(index) → obj or nil
+slice!(start, length) → new_ary or nil
+slice!(range) → new_ary or nil
+#delete element by index /up to length/or by range
+#return the deleted object , nil if out of range
+
+a = [ "a", "b", "c" ]
+a.slice!(1)     #=> "b"
+a               #=> ["a", "c"]
+a.slice!(-1)    #=> "c"
+a               #=> ["a"]
+a.slice!(100)   #=> nil
+a               #=> ["a"]
 
 
 a = Array.new
