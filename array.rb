@@ -46,7 +46,8 @@ arr.first #return first element 1
 arr.last #return last element 6
 arr.take(3) #return first 3 element 1,2,3
 arr.drop(3) #return last 3 element  4,5,6
-
+dropwhile = arr.drop_while {|i| i <3}
+puts "dropwhile : #{dropwhile}"
 
 # ADD ELEMENT
 arrnew = [1,2,3,6]
@@ -89,9 +90,36 @@ puts "keep_if: #{arr.keep_if {|a| a<4}}"#1,2,3
 arrnew.compact #delete all nil values 
 puts "compact  #{arrnew}"
 
+#return new array
 arrnew.uniq #remove duplicates all values 
 puts "uniq  #{arrnew}"
 
+b = [["student","sam"], ["student","george"], ["teacher","matz"]]
+b.uniq {|s| s.first}   # => [["student", "sam"], ["teacher", "matz"]]
+
+#not return new array    uniq!
+a = [ "a", "a", "b", "b", "c" ]
+a.uniq!   # => ["a", "b", "c"]
+
+b = [ "a", "b", "c" ]
+b.uniq!   # => nil
+
+c = [["student","sam"], ["student","george"], ["teacher","matz"]]
+c.uniq! {|s| s.first}   # => [["student", "sam"], ["teacher", "matz"]]
+
+# union 
+#return new array excude any duplicates
+# It compares elements using their hash and eql? methods for efficiency.
+["a", "b", "c"].union( ["c", "d", "a"] )#=> [ "a", "b", "c", "d" ]
+["a"].union( ["e", "b"], ["a", "c", "b"])#=> ["a", "e", "b", "c" ]
+[ "a" ].union #=> [ "a" ]
+
+
+# sort reverse
+
+arr.sort
+arr.sort {|a, b| b<=>a}
+arr.sort.reverse!
 
 strarr = %w[a,b,c,d,e,f]
 str =""
@@ -108,8 +136,7 @@ puts "arr : #{arr}"
 select=arr.select {|i| i<2}
 puts "select : #{select}"
 
-dropwhile = arr.drop_while {|i| i <3}
-puts "dropwhile : #{dropwhile}"
+
 
   # original array is not modify return new array
 try = [ 1, 1, 3, 5 ] & [ 3, 2, 1, 1 ]   
@@ -277,6 +304,11 @@ ary.count {|x| x%2 == 0}   #=> 3
 a = ["a", "b", "c"]
 a.cycle {|x| puts x}       # print, a, b, c, a, b, c,.. forever.
 a.cycle(2) {|x| puts x}    # print, a, b, c, a, b, c.
+
+
+# DIFFERENCE
+[ 1, 1, 2, 2, 3, 3, 4, 5 ].difference([ 1, 2, 4 ])#=> [ 3, 3, 5 ]
+[ 1, 'c', :s, 'yep' ].difference([ 1 ], [ 'a', 'c' ])#[:s, "yep"]
 
 
 arr2 = Array.new(4,1)
