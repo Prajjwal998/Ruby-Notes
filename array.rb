@@ -1,3 +1,5 @@
+# map select collect inject delete and each in ruby
+
 # arr=[1,2,3,4,5]
 
 # arr.each do |i|
@@ -34,7 +36,7 @@ arr[100]  #=> nil
 arr[-3]   #=> 4
 arr[2, 3] #=> [3, 4, 5]
 arr[1..4] #=> [2, 3, 4, 5]
-arr[1..-3] #=> [2, 3, 4]
+arr[1.-3] #=> [2, 3, 4]
 arr.at(1) #=> 2
 arr.empty? # false
 arr.include?('a') #false
@@ -138,12 +140,58 @@ a = [ 1, 2, 3 ]           #=> [1, 2, 3]
 a.shuffle!                #=> [2, 3, 1]
 a                         #=> [2, 3, 1]
 
+# sample 
+# Choose a random element or n random elements from the array.
+a = [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
+a.sample         #=> 7
+a.sample(4)      #=> [6, 4, 2, 5]
+# The optional rng argument will be used as the random number generator.
+a.sample(random: Random.new(1))     #=> 6
+a.sample(4, random: Random.new(1))  #=> [6, 10, 9, 2]
+
+# rotate return new array 
+# If count is negative then it rotates in the opposite direction
+a = [ "a", "b", "c", "d" ]
+a.rotate         #=> ["b", "c", "d", "a"]
+a                #=> ["a", "b", "c", "d"]
+a.rotate(2)      #=> ["c", "d", "a", "b"]
+a.rotate(-3)     #=> ["b", "c", "d", "a"]
+
+# rotate modify self 
+a = [ "a", "b", "c", "d" ]
+a.rotate!        #=> ["b", "c", "d", "a"]
+a                #=> ["b", "c", "d", "a"]
+a.rotate!(2)     #=> ["d", "a", "b", "c"]
+a.rotate!(-3)    #=> ["a", "b", "c", "d"]
+
+# rindex
+# Returns the index of the last object in self == to obj.
+a = [ "a", "b", "b", "b", "c" ]
+a.rindex("b")             #=> 3
+a.rindex("z")             #=> nil
+a.rindex {|x| x == "b"}   #=> 3
 
 
+
+# reverse  return new array
+[ "a", "b", "c" ].reverse   #=> ["c", "b", "a"]
+
+# reverse!  return same array
+a = [ "a", "b", "c" ]
+a.reverse!       #=> ["c", "b", "a"]
+a                #=> ["c", "b", "a"]
+
+#reverse_each 
 strarr = %w[a,b,c,d,e,f]
 str =""
 strarr.reverse_each {|ele| str += "#{ele}"}
 puts "str : #{str}"
+
+
+# replace  existing array 
+a = [ "a", "b", "c", "d", "e" ]
+a.replace([ "x", "y", "z" ])   #=> ["x", "y", "z"]
+a                              #=> ["x", "y", "z"]
 
 puts "arr : #{arr}"
 a=arr.map {|i| 3*i}
@@ -364,7 +412,11 @@ puts "#{arr7}"
 arr8 = Array(0...9)
 puts "#{arr8}"
 
+
 # arr4 = Array.new(11) {|i| i= i*2}
+
+# reject return new array
+# reject! self
 ar = [2,1,4,3,9,7,1,13]
 ar.reject! {|i| i.even?}
 puts "reject #{ar}"
